@@ -61,9 +61,7 @@ struct GlobalContext {
 	CalleeMap Callees;
 
 	// Map a function to all potential caller instructions.
-#ifdef MAP_CALLER_TO_CALLEE
 	CallerMap Callers;
-#endif
 
 	// Map function signature to functions
 	DenseMap<size_t, FuncSet>sigFuncsMap;
