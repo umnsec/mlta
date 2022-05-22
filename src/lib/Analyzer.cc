@@ -118,15 +118,15 @@ void PrintResults(GlobalContext *GCtx) {
 	OP << "\n@@ Total number of final callees: " << totalsize << ".\n";
 
 	OP<<"############## Result Statistics ##############\n";
-	cout<<"# Ave. Number of indirect-call targets: \t"<<std::setprecision(5)<<AveIndirectTargets<<"\n";
+	//cout<<"# Ave. Number of indirect-call targets: \t"<<std::setprecision(5)<<AveIndirectTargets<<"\n";
 	OP<<"# Number of indirect calls: \t\t\t"<<GCtx->IndirectCallInsts.size()<<"\n";   
 	OP<<"# Number of indirect calls with targets: \t"<<GCtx->NumValidIndirectCalls<<"\n";
 	OP<<"# Number of indirect-call targets: \t\t"<<GCtx->NumIndirectCallTargets<<"\n";
 	OP<<"# Number of address-taken functions: \t\t"<<GCtx->AddressTakenFuncs.size()<<"\n";
-	OP<<"# Number of second layer calls: \t\t"<<GCtx->NumSecondLayerTypeCalls<<"\n";
-	OP<<"# Number of second layer targets: \t\t"<<GCtx->NumSecondLayerTargets<<"\n";  
-	OP<<"# Number of first layer calls: \t\t\t"<<GCtx->NumFirstLayerTypeCalls<<"\n";
-	OP<<"# Number of first layer targets: \t\t"<<GCtx->NumFirstLayerTargets<<"\n";
+	OP<<"# Number of multi-layer calls: \t\t"<<GCtx->NumSecondLayerTypeCalls<<"\n";
+	OP<<"# Number of multi-layer targets: \t\t"<<GCtx->NumSecondLayerTargets<<"\n";  
+	OP<<"# Number of one-layer calls: \t\t\t"<<GCtx->NumFirstLayerTypeCalls<<"\n";
+	OP<<"# Number of one-layer targets: \t\t"<<GCtx->NumFirstLayerTargets<<"\n";
 
 }
 
