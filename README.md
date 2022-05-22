@@ -47,7 +47,17 @@ bugs, and false negatives from the baseline (function-type matching).
 ```sh
 	# To analyze a list of bitcode files, put the absolute paths of the bitcode files in a file, say "bc.list", then run:
 	$ ./build/lib/kalalyzer @bc.list
+	# Results will be printed out, or can you get the results in map `Ctx->Callees`.
 ```
+
+### Configurations
+
+* Config options can be found in `Config.h`
+```sh
+	# If precision is the priority, you can comment out `SOUND_MODE`
+	# `SOURCE_CODE_PATH` should point to the source code 
+```
+
 
 ## More details
 * [The MLTA paper (CCS'19)](https://www-users.cse.umn.edu/~kjlu/papers/mlta.pdf)

@@ -34,8 +34,7 @@ string getFileName(DILocation *Loc, DISubprogram *SP) {
 	if (strstr(user, "kjlu")) {
 		slashToTrim = 0;
 		trimPathSlash(FN, slashToTrim);
-		FN = string(LINUX_SOURCE_KASE) + "/" + FN;
-		//FN = string(FIREFOX_SOURCE) + "/" + FN;
+		FN = string(SOURCE_CODE_PATH) + "/" + FN;
 	} 
 	else {
 		OP << "== Warning: please specify the path of linux source.";
@@ -352,7 +351,6 @@ void cleanString(string &str) {
 	str.erase(end_pos, str.end());
 }
 
-//#define HASH_SOURCE_INFO
 string funcTypeString(FunctionType *FTy) {
 
 	string output;
