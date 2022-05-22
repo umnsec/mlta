@@ -1271,9 +1271,6 @@ bool MLTA::findCalleesWithMLTA(CallInst *CI,
 		return false;
 	}
 
-	Ctx->NumFirstLayerTargets += FS.size();
-	Ctx->NumFirstLayerTypeCalls += 1;
-
 	FuncSet FS1, FS2;
 	Type *PrevLayerTy = (dyn_cast<CallBase>(CI))->getFunctionType();
 	int PrevIdx = -1;
@@ -1391,6 +1388,10 @@ bool MLTA::findCalleesWithMLTA(CallInst *CI,
 	if (LayerNo > 1) {
 		Ctx->NumSecondLayerTypeCalls++;
 		Ctx->NumSecondLayerTargets += FS.size();
+	}
+	else {
+		Ctx->NumFirstLayerTargets += Ctx->sigFuncsMap[callHash(CI)].size();
+		Ctx->NumFirstLayerTypeCalls += 1;
 	}
 
 #if 0
