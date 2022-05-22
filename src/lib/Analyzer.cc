@@ -107,31 +107,26 @@ void PrintResults(GlobalContext *GCtx) {
 	float AveIndirectTargets = 0.0;
 	if (GCtx->NumValidIndirectCalls)
 		AveIndirectTargets =
-			//GCtx->NumIndirectCallTargets/GCtx->IndirectCallInsts.size();
 			(float)GCtx->NumIndirectCallTargets/GCtx->IndirectCallInsts.size();
 
 	int totalsize = 0;
 	for (auto &curEle: GCtx->Callees) {
 		if (curEle.first->isIndirectCall()) {
-			//OP << "Current ptr:" << curEle.first << ", " << curEle.first->getModule()->getName() << ", " << curEle.first->getFunction()->getName() << ":\n";
-			//for (Function *F : curEle.second)
-			//  OP << " " << F->getName();
 			totalsize += curEle.second.size();
-			//OP << "\n";
 		}
 	}
 	OP << "\n@@ Total number of final callees: " << totalsize << ".\n";
 
 	OP<<"############## Result Statistics ##############\n";
-  cout<<"# Ave. Number of indirect-call targets: \t"<<std::setprecision(5)<<AveIndirectTargets<<"\n";
-  OP<<"# Number of indirect calls: \t\t\t"<<GCtx->IndirectCallInsts.size()<<"\n";   
+	cout<<"# Ave. Number of indirect-call targets: \t"<<std::setprecision(5)<<AveIndirectTargets<<"\n";
+	OP<<"# Number of indirect calls: \t\t\t"<<GCtx->IndirectCallInsts.size()<<"\n";   
 	OP<<"# Number of indirect calls with targets: \t"<<GCtx->NumValidIndirectCalls<<"\n";
-  OP<<"# Number of indirect-call targets: \t\t"<<GCtx->NumIndirectCallTargets<<"\n";
-  OP<<"# Number of address-taken functions: \t\t"<<GCtx->AddressTakenFuncs.size()<<"\n";
-  OP<<"# Number of second layer calls: \t\t"<<GCtx->NumSecondLayerTypeCalls<<"\n";
-  OP<<"# Number of second layer targets: \t\t"<<GCtx->NumSecondLayerTargets<<"\n";  
+	OP<<"# Number of indirect-call targets: \t\t"<<GCtx->NumIndirectCallTargets<<"\n";
+	OP<<"# Number of address-taken functions: \t\t"<<GCtx->AddressTakenFuncs.size()<<"\n";
+	OP<<"# Number of second layer calls: \t\t"<<GCtx->NumSecondLayerTypeCalls<<"\n";
+	OP<<"# Number of second layer targets: \t\t"<<GCtx->NumSecondLayerTargets<<"\n";  
 	OP<<"# Number of first layer calls: \t\t\t"<<GCtx->NumFirstLayerTypeCalls<<"\n";
-  OP<<"# Number of first layer targets: \t\t"<<GCtx->NumFirstLayerTargets<<"\n";
+	OP<<"# Number of first layer targets: \t\t"<<GCtx->NumFirstLayerTargets<<"\n";
 
 }
 
@@ -175,12 +170,6 @@ int main(int argc, char **argv) {
 	// Build global callgraph.
 	CallGraphPass CGPass(&GlobalCtx);
 	CGPass.run(GlobalCtx.Modules);
-
-#if 0
-	MLTABasicBlockPass BBPass(&GlobalCtx);
-	BBPass.run(GlobalCtx.Modules);
-	BBPass.processResults();
-#endif
 
 	// Print final results
 	PrintResults(&GlobalCtx);
