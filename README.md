@@ -1,4 +1,4 @@
-# MLTA: Multi-Layer Type Analysis for Refining Indirect-Call Targets 
+# TypeDive: Multi-Layer Type Analysis (MLTA) for Refining Indirect-Call Targets 
 
 This project includes a prototype implementation (TypeDive) of MLTA.
 MLTA relies on an observation that function pointers are commonly
