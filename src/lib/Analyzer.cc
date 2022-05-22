@@ -123,10 +123,10 @@ void PrintResults(GlobalContext *GCtx) {
 	OP<<"# Number of indirect calls with targets: \t"<<GCtx->NumValidIndirectCalls<<"\n";
 	OP<<"# Number of indirect-call targets: \t\t"<<GCtx->NumIndirectCallTargets<<"\n";
 	OP<<"# Number of address-taken functions: \t\t"<<GCtx->AddressTakenFuncs.size()<<"\n";
-	OP<<"# Number of multi-layer calls: \t\t"<<GCtx->NumSecondLayerTypeCalls<<"\n";
+	OP<<"# Number of multi-layer calls: \t\t\t"<<GCtx->NumSecondLayerTypeCalls<<"\n";
 	OP<<"# Number of multi-layer targets: \t\t"<<GCtx->NumSecondLayerTargets<<"\n";  
 	OP<<"# Number of one-layer calls: \t\t\t"<<GCtx->NumFirstLayerTypeCalls<<"\n";
-	OP<<"# Number of one-layer targets: \t\t"<<GCtx->NumFirstLayerTargets<<"\n";
+	OP<<"# Number of one-layer targets: \t\t\t"<<GCtx->NumFirstLayerTargets<<"\n";
 
 }
 
