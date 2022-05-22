@@ -55,7 +55,7 @@ bugs, and false negatives from the baseline (function-type matching).
 @inproceedings{mlta-ccs19,
   title        = {{Where Does It Go? Refining Indirect-Call Targets with Multi-Layer Type Analysis}},
   author       = {Kangjie Lu and Hong Hu},
-  booktitle    = {Proceedings of the 26th ACM Conference on Computer and Communications Security (CCS'19)},
+  booktitle    = {Proceedings of the 26th ACM Conference on Computer and Communications Security (CCS)},
   month        = November,
   year         = 2019,
   address      = {London, UK},

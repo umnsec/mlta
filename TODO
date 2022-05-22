@@ -1,0 +1,4 @@
+1. Handling missing names of structs
+2. Handling downcasting in -O2
+3. Reducing type escapes and caps
+
