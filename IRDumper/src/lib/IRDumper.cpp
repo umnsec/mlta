@@ -23,7 +23,7 @@ bool LegacyIRDumper::runOnModule(Module &M) {
 
 	saveModule(M, M.getName());
 
-	return true;
+	return false;
 }
 
 char LegacyIRDumper::ID = 0;
