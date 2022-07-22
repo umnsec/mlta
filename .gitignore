@@ -2,3 +2,5 @@ build
 log
 processLinuxTrace.py
 tags
+llvm-project
+*.swp
