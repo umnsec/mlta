@@ -22,7 +22,6 @@ bugs, and false negatives from the baseline (function-type matching).
 
 ### Build LLVM 
 ```sh 
-	$ cd llvm 
 	$ ./build-llvm.sh 
 	# The tested LLVM is of commit e758b77161a7 
 ```
@@ -31,7 +30,6 @@ bugs, and false negatives from the baseline (function-type matching).
 ```sh 
 	# Build the analysis pass 
 	# First update Makefile to make sure the path to the built LLVM is correct
-	$ cd ../analyzer 
 	$ make 
 	# Now, you can find the executable, `kanalyzer`, in `build/lib/`
 ```

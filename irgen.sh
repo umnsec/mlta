@@ -2,7 +2,7 @@
 
 KERNEL_SRC="$(pwd)/../kernels/linux"
 IRDUMPER="$(pwd)/IRDumper/build/lib/libDumper.so"
-CLANG="$(pwd)/../llvm/llvm-project/prefix/bin/clang"
+CLANG="$(pwd)/llvm-project/prefix/bin/clang"
 CONFIG="defconfig"
 #CONFIG="allyesconfig"
 
