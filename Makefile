@@ -1,7 +1,7 @@
 CUR_DIR = $(shell pwd)
 LLVM_BUILD := ${CUR_DIR}/llvm-project/prefix
-ANALYZER_DIR := ${CURDIR}/src
-ANALYZER_BUILD := ${CURDIR}/build
+ANALYZER_DIR := ${CUR_DIR}/src
+ANALYZER_BUILD := ${CUR_DIR}/build
 
 
 UNAME := $(shell uname)

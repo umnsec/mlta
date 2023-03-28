@@ -1,7 +1,7 @@
 CUR_DIR = $(shell pwd)
 LLVM_BUILD=${CUR_DIR}/../llvm-project/prefix
-SRC_DIR := ${CURDIR}/src
-SRC_BUILD := ${CURDIR}/build
+SRC_DIR := ${CUR_DIR}/src
+SRC_BUILD := ${CUR_DIR}/build
 
 NPROC := ${shell sysctl -n hw.ncpu}
 
