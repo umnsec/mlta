@@ -46,7 +46,7 @@ This mechanism ensures soundness for interprocedural ambiguity, but *KallGraph* 
 - The remaining 5 are caused by an implementation error (see Section 2).
 
 **Update:** 
-The authors responded to this correction: they acknowledged their example is incorrect and tried to provide a new example. It turns out the new example is irrelevant to the claimed unsound confinement, but that “ReturnInst” was not handled yet in “typeConfineInFunction()” of MLTA.
+The authors responded to this correction: they acknowledged their example is incorrect and tried to provide new examples. It turns out the new examples are irrelevant to the claimed unsound confinement design, but that when collecting address-taken functions, some special statements (`ReturnInst` and `Arguments`） were not supported yet. These FNs already exist in the function-type matching and are not introduced by MLTA's design. We have patches to quickly fix them.
 
 ---
 
