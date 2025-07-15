@@ -36,7 +36,7 @@ This mechanism ensures soundness for interprocedural ambiguity, but *KallGraph* 
 
 *KallGraph* uses Figure 3 to argue that MLTA misses the target function `b_read` for `icall2`. In fact, MLTA captures this target correctly. See the screenshot below:
 
-![MLTA resolving b_read correctly (Figure 3)](docs/fig3-mlta-result.png)
+![MLTA resolving b_read correctly (Figure 3)](fig3-mlta-result.png)
 
 
 
