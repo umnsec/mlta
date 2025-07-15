@@ -1,5 +1,10 @@
 # TypeDive: Multi-Layer Type Analysis (MLTA) for Refining Indirect-Call Targets 
 
+
+📢 **[July 2025]** We have posted a detailed response to the claims made in the KallGraph paper. [**Read the full review here →**](docs/review-kallgraph.md)
+
+
+## Intro
 This project includes a prototype implementation (TypeDive) of MLTA.
 MLTA relies on an observation that function pointers are commonly
 stored into objects whose types have a multi-layer type hierarchy;
