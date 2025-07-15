@@ -11,10 +11,10 @@ We initially shared a version of this review with the authors of *KallGraph* on 
 
 - Most major claims of *KallGraph* are not supported by evidence, and its experimental results appear significantly off.
 - MLTA does not exhibit the claimed type confinement issues; its design and experiments confirm sound handling of such cases.
-- All example cases used to demonstrate MLTA’s “unsoundness” are incorrect; MLTA does not miss the reported targets. These include examples in Figure 3 and Section 7.2.1.
+- All example cases used to demonstrate MLTA’s “unsoundness” are incorrect; MLTA does not miss the reported targets. These include examples in Figure 3 and Section 7.2.1 of the *KallGraph* paper.
 - Of 66 false negatives reported in *KallGraph*’s Table 6, only 17 are verifiable; none are due to design flaws.
 - *KallGraph* itself shows a substantially higher FN rate than reported—missing 1,782 of 6,500 traced indirect calls. Precision claims become pointless with such a high FN rate.
-- Table 2 states *KallGraph* completes Linux kernel analysis in 4.5 hours. In fact, it requires 270 CPU hours; MLTA takes only 0.5 CPU hour.
+- Table 2 states *KallGraph* completes Linux kernel analysis in 4.5 hours, which is misleading. In fact, it requires 270 CPU hours; MLTA takes only 0.5 CPU hour.
 
 ---
 
@@ -30,11 +30,14 @@ From Section 4.1.3 of the MLTA paper:
 
 > One thing to note is that, when we cannot decide if a composite type would be stored or cast to an unsupported type, e.g., a pointer of an object of the composite type is passed to or from other functions, and we cannot decide how this pointer is used in those functions, we will also treat the composite type as escaping.
 
-This mechanism ensures soundness for interprocedural ambiguity, but *KallGraph* does not account for it in its critique.
+This mechanism ensures soundness for interprocedural ambiguity, but *KallGraph* does not account for it in its analysis.
 
 #### Supportive experiments
 
 *KallGraph* uses Figure 3 to argue that MLTA misses the target function `b_read` for `icall2`. In fact, MLTA captures this target correctly. See the screenshot below:
+
+![MLTA resolving b_read correctly (Figure 3)](docs/fig3-mlta-result.png)
+
 
 
 *KallGraph* also claims 66 of its 100 FNs are due to this issue. Our reanalysis finds that:
@@ -92,7 +95,7 @@ Findings:
 
 Our investigation shows they stem from LLVM type issues and implementation artifacts---not from MLTA’s design.
 
-📄 **[re-evaluation-kallgraph.txt](docs/re-evaluation-kallgraph.txt)** provides a case-by-case breakdown.
+📄 **[FN Reevaluation Results]([docs/re-evaluation-kallgraph.txt](https://docs.google.com/spreadsheets/d/e/2PACX-1vQ0ud5xfwK6V2nNQ6aq9af7bMIcxfMExOsMeymDKXa3lHwk1BeayaTqDCqAF9Ux7QA6oAdADx4GTKFX/pubhtml?gid=0&single=true))** provides a case-by-case breakdown. Note that in MLTA's paper and experiments, we never used `mem2reg` which introduces lots of `PHINode` which is not fully supported yet in MLTA's current implementation. 
 
 ---
 
@@ -109,7 +112,10 @@ Example (`io_uring/io_uring.c:1867`):
 - In `io_uring/io_uring.bc`:
   ```llvm
   %struct.io_issue_def = type { i16, i32 (%struct.io_kiocb*, i32)*, i32 (%struct.io_kiocb*, %struct.io_uring_sqe*)* }
-
+- In `io_uring/opdef.bc` (The type name is missing, and the struct layout is different, too):
+  ```llvm
+   { i8, i8, i32 (%struct.io_kiocb*, i32)*, i32 (%struct.io_kiocb*, %struct.io_uring sqe*)*} 
+  
 MLTA uses name-based type comparison, which fails here. *KallGraph* refers to this as “unsound typecast handling,” but it is a well-known limitation of LLVM IR and has been discussed in prior work [2, 3, 5]. MLTA’s successors address this issue through structural matching.
 
 ---
