@@ -499,6 +499,17 @@ bool MLTA::typeConfineInFunction(Function *F) {
 				}
 			}
 		}
+		else if (ReturnInst *RI = dyn_cast<ReturnInst>(I)) {
+			Value* RV = RI->getReturnValue();
+			if (!RV)
+				continue;
+			Function *CF = dyn_cast<Function>(RV);
+			if (!CF)
+				continue;
+			if (F->isIntrinsic())
+				continue;
+			confineTargetFunction(RI, CF);
+		}
 	}
 
 	return true;
