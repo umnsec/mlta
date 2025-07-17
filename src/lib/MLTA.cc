@@ -489,9 +489,7 @@ bool MLTA::typeConfineInFunction(Function *F) {
 						continue;
 					if (Argument *Arg = getParamByArgNo(CF, OI->getOperandNo())) {
 						for (auto U : Arg->users()) {
-							if (isa<StoreInst>(U) || isa<BitCastOperator>(U)) {
-								confineTargetFunction(U, F);
-							}
+							confineTargetFunction(U, F);
 						}
 					}
 					// TODO: track into the callee to avoid marking the
