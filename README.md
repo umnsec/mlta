@@ -24,7 +24,7 @@ bugs, and false negatives from the baseline (function-type matching).
 
 
 ## How to use TypeDive
-
+**For TypeDive works with LLVM-15, g++-10 is required for compilation**
 ### Build LLVM 
 ```sh 
 	$ ./build-llvm.sh 
