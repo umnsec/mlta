@@ -489,15 +489,24 @@ bool MLTA::typeConfineInFunction(Function *F) {
 						continue;
 					if (Argument *Arg = getParamByArgNo(CF, OI->getOperandNo())) {
 						for (auto U : Arg->users()) {
-							if (isa<StoreInst>(U) || isa<BitCastOperator>(U)) {
-								confineTargetFunction(U, F);
-							}
+							confineTargetFunction(U, F);
 						}
 					}
 					// TODO: track into the callee to avoid marking the
 					// function type as a cap
 				}
 			}
+		}
+		else if (ReturnInst *RI = dyn_cast<ReturnInst>(I)) {
+			Value* RV = RI->getReturnValue();
+			if (!RV)
+				continue;
+			Function *CF = dyn_cast<Function>(RV);
+			if (!CF)
+				continue;
+			if (F->isIntrinsic())
+				continue;
+			confineTargetFunction(RI, CF);
 		}
 	}
 
