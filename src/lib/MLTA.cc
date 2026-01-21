@@ -1166,20 +1166,17 @@ bool MLTA::nextLayerBaseType(Value *V, list<typeidx_t> &TyList,
 	else if (PHINode *PN = dyn_cast<PHINode>(V)) {
 		// FIXME: tracking incoming values
 		bool ret = false;
-		set<Value *> NVisited;
 		list<typeidx_t> NTyList;
 		for (unsigned i = 0, e = PN->getNumIncomingValues(); i != e; ++i) {
 			Value *IV = PN->getIncomingValue(i);
 			NextV = IV;
-			NVisited = Visited;
 			NTyList = TyList;
-			ret = nextLayerBaseType(IV, NTyList, NextV, NVisited);
+			ret = nextLayerBaseType(IV, NTyList, NextV, Visited);
 			if (NTyList.size() > TyList.size()) {
 				break;
 			}
 		}
 		TyList = NTyList;
-		Visited = NVisited;
 		return ret;
 	}
 	else if (SelectInst *SelI = dyn_cast<SelectInst>(V)) {
